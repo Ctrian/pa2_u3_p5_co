@@ -40,9 +40,9 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 	@Override
 	public List<Factura> seleccionarFacturasInnerJoin() {
 		// TODO Auto-generated method stub
-		// SQL: SELECT * FROM factura f INNER JOIN detalle_factura d on
-		// f.fact_id=d.defa_id_factura
-		// JPQL: SELECT f FROM Factura f INNER JOIN f.detalleFactura d
+		// SQL: SELECT * FROM factura f INNER JOIN detalle_factura d on f.fact_id = d.defa_id
+		
+		// JPQL: SELECT f FROM Factura f INNER JOIN f.detallesFactura d
 		String jpql = "SELECT f FROM Factura f JOIN f.detallesFactura d";
 		TypedQuery<Factura> myQuery = this.entityManager.createQuery(jpql, Factura.class);
 		List<Factura> lista = myQuery.getResultList();

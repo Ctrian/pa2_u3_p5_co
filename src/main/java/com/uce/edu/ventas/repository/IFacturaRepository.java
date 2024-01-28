@@ -5,9 +5,10 @@ import java.util.List;
 import com.uce.edu.ventas.repository.modelo.Factura;
 
 public interface IFacturaRepository {
-	public Factura seleccionarPorNumero(String numero);
-
+	
 	public void insertar(Factura factura);
+	
+	public Factura seleccionarPorNumero(String numero);
 
 	public List<Factura> seleccionarFacturasInnerJoin();
 
