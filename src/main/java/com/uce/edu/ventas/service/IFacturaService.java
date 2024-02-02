@@ -30,4 +30,6 @@ public interface IFacturaService {
 	public List<Factura> buscarFacturasFetchJoin();
 
 	public List<FacturaDTO> buscarFacturasDTO();
+
+	public Factura buscarUnionFacturaDetalle();
 }

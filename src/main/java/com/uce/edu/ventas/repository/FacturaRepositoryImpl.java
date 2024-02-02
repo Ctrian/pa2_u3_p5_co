@@ -170,4 +170,14 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 		return mQ.getResultList();
 	}
 
+	@Override
+	public Factura seleccionarUnionFacturaDetalle() {
+		// TODO Auto-generated method stub
+		Query mQ = this.entityManager.createNativeQuery("SELECT fact_cedula FROM factura f WHERE f.fact_id =4",
+				Factura.class);
+		Factura fac = (Factura) mQ.getSingleResult();
+		fac.getDetallesFactura().size();
+		return fac;
+	}
+
 }

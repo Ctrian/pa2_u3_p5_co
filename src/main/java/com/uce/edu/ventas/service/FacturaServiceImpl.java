@@ -88,4 +88,10 @@ public class FacturaServiceImpl implements IFacturaService {
 		return this.facturaRepository.seleccionarFacturasDTO();
 	}
 
+	@Override
+	public Factura buscarUnionFacturaDetalle() {
+		// TODO Auto-generated method stub
+		return this.facturaRepository.seleccionarUnionFacturaDetalle();
+	}
+
 }

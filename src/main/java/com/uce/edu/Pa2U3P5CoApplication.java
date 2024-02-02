@@ -1,6 +1,5 @@
 package com.uce.edu;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,15 +7,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import com.uce.edu.ventas.repository.modelo.Factura;
-import com.uce.edu.ventas.repository.modelo.dto.FacturaDTO;
-import com.uce.edu.ventas.service.IFacturaService;
+import com.uce.edu.ventas.repository.modelo.Autor;
+import com.uce.edu.ventas.service.IAutorService;
 
 @SpringBootApplication
 public class Pa2U3P5CoApplication implements CommandLineRunner {
 
 	@Autowired
-	private IFacturaService facturaService;
+	private IAutorService autorService;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2U3P5CoApplication.class, args);
@@ -25,24 +23,59 @@ public class Pa2U3P5CoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		System.out.println("UPDATE");
+		System.out.println("--- 2 INNER JOIN ---");
+		List<Autor> l1 = this.autorService.buscarLibrosInnerJoin();
+		for (Autor a : l1) {
+			System.out.println(a);
+		}
+		System.out.println("------------------------------");
+		List<Autor> l2 = this.autorService.buscarLibrosInnerJoin("Carmen");
+		for (Autor a : l2) {
+			System.out.println(a);
+		}
 
-		int cantidad = this.facturaService.actualizarFechas(LocalDateTime.of(2020, 1, 15, 12, 50),
-				LocalDateTime.of(2024, 1, 1, 0, 0, 0));
-		System.out.println("cantidad de registros/filas actualizados: ");
-		System.out.println(cantidad);
+		System.out.println("--- 2 RIGHT JOIN ---");
+		List<Autor> l3 = this.autorService.buscarLibrosRightJoin();
+		for (Autor a : l3) {
+			System.out.println(a);
+		}
+		System.out.println("------------------------------");
+		List<Autor> l4 = this.autorService.buscarLibrosRightJoin("Austriaco");
+		for (Autor a : l4) {
+			System.out.println(a);
+		}
 
-		System.out.println("DELETE");
-		int c1 = this.facturaService.borrarPorNumero("0001-02570");
-		System.out.println("cantidad de registros/filas eliminados: ");
-		System.out.println(c1);
+		System.out.println("--- 2 LEFT JOIN ---");
+		List<Autor> l5 = this.autorService.buscarLibrosLeftJoin();
+		for (Autor a : l5) {
+			System.out.println(a);
+		}
+		System.out.println("------------------------------");
+		List<Autor> l6 = this.autorService.buscarLibrosLeftJoin("Carmen");
+		for (Autor a : l6) {
+			System.out.println(a);
+		}
 
-		// this.facturaService.eliminar(1);
+		System.out.println("--- 2 FULL JOIN ---");
+		List<Autor> l7 = this.autorService.buscarLibrosFullJoin();
+		for (Autor a : l7) {
+			System.out.println(a);
+		}
+		System.out.println("------------------------------");
+		List<Autor> l8 = this.autorService.buscarLibrosFullJoin("Colombiana");
+		for (Autor a : l8) {
+			System.out.println(a);
+		}
 
-		System.out.println("DTO");
-		List<FacturaDTO> listaDTO = this.facturaService.buscarFacturasDTO();
-		for (FacturaDTO fDto : listaDTO) {
-			System.out.println(fDto);
+		System.out.println("--- 2 FETCH JOIN ---");
+		List<Autor> l9 = this.autorService.buscarLibrosFetchJoin();
+		for (Autor a : l9) {
+			System.out.println(a);
+		}
+		System.out.println("------------------------------");
+		List<Autor> l10 = this.autorService.buscarLibrosFetchJoin("Benjamin", "Austriaco");
+		for (Autor a : l10) {
+			System.out.println(a);
 		}
 	}
 
