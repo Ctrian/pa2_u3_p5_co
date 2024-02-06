@@ -13,6 +13,7 @@ import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.Query;
 import jakarta.persistence.TypedQuery;
 import jakarta.transaction.Transactional;
+import jakarta.transaction.Transactional.TxType;
 
 @Repository
 @Transactional
@@ -21,7 +22,12 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 	@PersistenceContext
 	private EntityManager entityManager;
 
-	// Join Types en Jakarta Persistence
+	@Override
+	@Transactional(value = TxType.MANDATORY)
+	public void insertar(Factura factura) {
+		// TODO Auto-generated method stub
+		this.entityManager.persist(factura);
+	}
 
 	@Override
 	public Factura seleccionarPorNumero(String numero) {
@@ -34,11 +40,7 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 		return fac;
 	}
 
-	@Override
-	public void insertar(Factura factura) {
-		// TODO Auto-generated method stub
-		this.entityManager.persist(factura);
-	}
+	// Join Types en Jakarta Persistence
 
 	@Override
 	public List<Factura> seleccionarFacturasInnerJoin() {

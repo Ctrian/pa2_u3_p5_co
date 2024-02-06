@@ -33,4 +33,6 @@ public interface IFacturaService {
 	public List<FacturaDTO> buscarFacturasDTO();
 
 	public Factura buscarUnionFacturaDetalle();
+
+	public void prueba();
 }

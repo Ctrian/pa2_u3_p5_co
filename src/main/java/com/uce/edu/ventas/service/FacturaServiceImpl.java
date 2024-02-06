@@ -25,12 +25,6 @@ public class FacturaServiceImpl implements IFacturaService {
 	private IClienteService clienteService;
 
 	@Override
-	public Factura buscarPorNumero(String numero) {
-		// TODO Auto-generated method stub
-		return this.facturaRepository.seleccionarPorNumero(numero);
-	}
-
-	@Override
 	@Transactional(value = TxType.REQUIRED) // T1
 	public void guardar(Factura factura, Cliente cliente) {
 		// TODO Auto-generated method stub
@@ -39,6 +33,12 @@ public class FacturaServiceImpl implements IFacturaService {
 		System.out.println("Paso el insert de factura");
 		this.clienteService.guardar(cliente);
 		System.out.println("Paso el insert de cliente");
+	}
+
+	@Override
+	public Factura buscarPorNumero(String numero) {
+		// TODO Auto-generated method stub
+		return this.facturaRepository.seleccionarPorNumero(numero);
 	}
 
 	@Override
@@ -105,6 +105,14 @@ public class FacturaServiceImpl implements IFacturaService {
 	public Factura buscarUnionFacturaDetalle() {
 		// TODO Auto-generated method stub
 		return this.facturaRepository.seleccionarUnionFacturaDetalle();
+	}
+
+	@Override
+	//@Transactional(value = TxType.MANDATORY) // obliga a que quien/desde donde se le llame tenga una transacción
+	public void prueba() {
+		// TODO Auto-generated method stub
+		System.out.println("Este método es de prueba");
+		System.out.println("Prueba: " + TransactionSynchronizationManager.isActualTransactionActive());
 	}
 
 }

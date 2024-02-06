@@ -16,7 +16,7 @@ public class ClienteServiceImpl implements IClienteService {
 	private IClienteRepository clienteRepository;
 
 	@Override
-	@Transactional(value = TxType.REQUIRED) // T2
+	@Transactional(value = TxType.REQUIRED) // T1
 	public void guardar(Cliente cliente) {
 		// TODO Auto-generated method stub
 		try {

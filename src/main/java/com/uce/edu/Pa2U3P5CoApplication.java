@@ -25,7 +25,7 @@ public class Pa2U3P5CoApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
-		// Existe una transaccion activa? O: false
+		// Existe una transaccion activa?
 		System.out.println(TransactionSynchronizationManager.isActualTransactionActive());
 
 		Factura factura = new Factura();
@@ -37,7 +37,10 @@ public class Pa2U3P5CoApplication implements CommandLineRunner {
 		cliente.setNombre("Carlos");
 		cliente.setApellido(null);
 		
-		this.facturaService.guardar(factura, cliente);
+		//this.facturaService.guardar(factura, cliente);
+		
+		System.out.println("Main: " + TransactionSynchronizationManager.isActualTransactionActive());
+		this.facturaService.prueba();
 	}
 
 }
