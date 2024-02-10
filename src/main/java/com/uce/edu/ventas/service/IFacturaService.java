@@ -35,4 +35,8 @@ public interface IFacturaService {
 	public Factura buscarUnionFacturaDetalle();
 
 	public void prueba();
+
+	public void pruebaSupports();
+
+	public void pruebaNever();
 }

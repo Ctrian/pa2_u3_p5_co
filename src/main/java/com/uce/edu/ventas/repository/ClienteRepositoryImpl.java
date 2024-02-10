@@ -17,7 +17,7 @@ public class ClienteRepositoryImpl implements IClienteRepository {
 	private EntityManager entityManager;
 
 	@Override
-	@Transactional(value = TxType.MANDATORY)
+	@Transactional(value = TxType.REQUIRES_NEW) //T1
 	public void insertar(Cliente cliente) {
 		// TODO Auto-generated method stub
 		System.out.println("Antes de ejecutar en la Base");

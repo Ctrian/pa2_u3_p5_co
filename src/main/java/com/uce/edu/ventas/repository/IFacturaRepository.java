@@ -35,4 +35,6 @@ public interface IFacturaRepository {
 	public List<FacturaDTO> seleccionarFacturasDTO();
 
 	public Factura seleccionarUnionFacturaDetalle();
+
+	public List<Factura> seleccionarTodos();
 }

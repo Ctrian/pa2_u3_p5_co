@@ -30,6 +30,14 @@ public class FacturaRepositoryImpl implements IFacturaRepository {
 	}
 
 	@Override
+	@Transactional(value = TxType.NOT_SUPPORTED)
+	public List<Factura> seleccionarTodos() {
+		// TODO Auto-generated method stub
+		TypedQuery<Factura> mQ = this.entityManager.createQuery("SELECT f FROM Factura f", Factura.class);
+		return mQ.getResultList();
+	}
+	
+	@Override
 	public Factura seleccionarPorNumero(String numero) {
 		// TODO Auto-generated method stub
 		TypedQuery<Factura> mQ = this.entityManager.createQuery("SELECT f FROM Factura f WHERE f.numero = : numero",
