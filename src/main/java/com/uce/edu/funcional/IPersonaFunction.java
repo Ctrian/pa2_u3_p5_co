@@ -1,6 +1,6 @@
 package com.uce.edu.funcional;
 
 @FunctionalInterface
-public interface IPersonaFunction<R, T> {
+public interface IPersonaFunction<T, R> {
 	public T aplicar(R arg);
 }

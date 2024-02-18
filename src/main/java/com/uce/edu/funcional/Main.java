@@ -1,5 +1,7 @@
 package com.uce.edu.funcional;
 
+import java.util.function.IntUnaryOperator;
+
 public class Main {
 
 	public static void main(String[] args) {
@@ -32,6 +34,10 @@ public class Main {
 		System.out.println(supplierLambda3.getId());
 
 		// Métodos referenciados
+		System.out.println("Métodos referenciados");
+		MetodosReferenciados met = new MetodosReferenciados();
+		IPersonSupplier<String> suplierLambda4 = met::obtenerId;
+		System.out.println(suplierLambda4.getId());
 
 		// 2. Consumer
 		System.out.println("************************ CONSUMER ************************");
@@ -51,6 +57,11 @@ public class Main {
 		};
 		consumerLambda.accept("Profesor");
 
+		// Metodos referenciados
+		System.out.println("Métodos referenciados");
+		IPersonaConsumer<String> consumer2 = met::procesar;
+		consumer2.accept("Andres referenciado");
+
 		// 3. Predicate
 		System.out.println("************************ PREDICATE ************************");
 		// Lambdas
@@ -60,6 +71,70 @@ public class Main {
 
 		IPersonaPredicate<String> predicateLambda2 = letra -> "Ctrian".contains(letra);
 		System.out.println(predicateLambda2.evaluar("c"));
+
+		// Metodos referenciados
+		System.out.println("Métodos referenciados");
+		IPersonaPredicate<String> predicate2 = met::evaluar;
+		System.out.println(predicate2.evaluar("C"));
+
+		IPersonaPredicate<Integer> predicate3 = met::evaluar;
+		System.out.println(predicate3.evaluar(8));
+
+		// 4. Fuction
+		System.out.println("************************ FUNCTION ************************");
+		// Lambdas
+		System.out.println("Lambdas");
+		// retorna un string recibe un integer
+		IPersonaFunction<String, Integer> functionLambda = numero -> {
+			numero = numero + Integer.valueOf(10);
+			String numeroString = numero.toString().concat(" - valor");
+			return numeroString;
+		};
+		System.out.println(functionLambda.aplicar(7));
+
+		IPersonaFunction<Empleado, Ciudadano> functionLambda1 = ciudadano -> {
+			Empleado e1 = new Empleado();
+			e1.setNombreCompleto(ciudadano.getNombre() + " " + ciudadano.getApellido());
+			if (ciudadano.getProvincia().compareTo("Pichincha") == 0) {
+				e1.setPais("Ecuador");
+			}
+			return e1;
+		};
+
+		Ciudadano c1 = new Ciudadano();
+		c1.setApellido("Oli");
+		c1.setNombre("Ctrian");
+		c1.setProvincia("Pichincha");
+		Empleado empl = functionLambda1.aplicar(c1);
+
+		System.out.println(empl);
+
+		// Metodos referenciados
+		System.out.println("Métodos referenciados");
+		Empleado empl2 = new Empleado();
+		empl2.setNombreCompleto("Daniel Vascones");
+		empl2.setPais("Colombia");
+
+		IPersonaFunction<Ciudadano, Empleado> function2 = met::cambiar;
+		Ciudadano ciudN = function2.aplicar(empl2);
+		System.out.println(ciudN);
+
+		// 5. Unary Operator
+		System.out.println("************************ UNARY OPERATOR ************************");
+		// Lambdas
+		System.out.println("Lambdas");
+		IPersonaUnaryOperator<Integer> unaryOperatorLambda = numero -> numero + (numero * 2);
+		System.out.println(unaryOperatorLambda.aplicar(14));
+
+		IPersonaUnaryOperatorFunction<Integer> unaryOperatorLambda2 = numero -> numero + (numero * 2);
+		System.out.println(unaryOperatorLambda2.aplicar(14));
+
+		// Metodos referenciados
+		System.out.println("Métodos referenciados");
+		IPersonaUnaryOperatorFunction<Empleado> unary3 = met :: procesar;
+		Empleado emplN = unary3.aplicar(empl2);
+		System.out.println(emplN);
+		
 	}
 
 }
