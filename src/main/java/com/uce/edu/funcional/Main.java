@@ -170,12 +170,12 @@ public class Main {
 		Ciudadano ciud1 = new Ciudadano();
 		c1.setApellido("Oli");
 		c1.setNombre("Ctrian");
-		c1.setProvincia("Pichincha");
+		c1.setProvincia("Cotopaxi");
 
 		Ciudadano ciud2 = new Ciudadano();
 		c1.setApellido("Eduardo");
 		c1.setNombre("Landazuri");
-		c1.setProvincia("Pichincha");
+		c1.setProvincia("Chimborazo");
 
 		Ciudadano ciud3 = new Ciudadano();
 		c1.setApellido("Gabriela");
@@ -183,13 +183,13 @@ public class Main {
 		c1.setProvincia("Pichincha");
 
 		List<Ciudadano> lCiud = Arrays.asList(ciud1, ciud2, ciud3);
-		Stream<Empleado> lEmpl = lCiud.stream().map(ciudadanom -> {
-			Empleado em1 = new Empleado();
-			em1.setNombreCompleto(ciudadanom.getNombre() + " " + ciudadanom.getApellido());
-			if (ciudadanom.getProvincia().compareTo("Pichincha") == 0) {
-				em1.setPais("Ecuador");
+		Stream<Empleado> lEmpl = lCiud.stream().map(ciudadano -> {
+			Empleado e1 = new Empleado();
+			e1.setNombreCompleto(ciudadano.getNombre() + " " + ciudadano.getApellido());
+			if (ciudadano.getProvincia().compareTo("Pichincha") == 0) {
+				e1.setPais("Ecuador");
 			}
-			return em1;
+			return e1;
 		});
 		lEmpl.forEach(empleado -> System.out.println(empleado));
 
