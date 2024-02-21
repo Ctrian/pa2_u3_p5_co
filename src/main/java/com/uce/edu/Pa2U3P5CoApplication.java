@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
 import com.uce.edu.ventas.repository.modelo.Cliente;
@@ -16,6 +17,7 @@ import com.uce.edu.ventas.service.IClienteService;
 import com.uce.edu.ventas.service.IFacturaService;
 
 @SpringBootApplication
+@EnableAsync
 public class Pa2U3P5CoApplication implements CommandLineRunner {
 
 	@Autowired
@@ -41,37 +43,41 @@ public class Pa2U3P5CoApplication implements CommandLineRunner {
 		 * 
 		 * long tT = (tF - tI) / 1000;
 		 * System.out.println("Tiempo transcurrido en segundos: " + tT);
+		 * 
+		 * 
+		 * // System.out.println("Nombre Hilo: " + Thread.currentThread().getName()); //
+		 * long tI = System.currentTimeMillis(); // List<Cliente> lC = new
+		 * ArrayList<>(); // for (int i = 1; i <= 100; i++) { // Cliente cliente = new
+		 * Cliente(); // cliente.setNombre("CN" + i); // cliente.setApellido("CA" + i);
+		 * // lC.add(cliente); // } // lC.stream().forEach(cliente ->
+		 * this.clienteService.guardar(cliente)); // long tF =
+		 * System.currentTimeMillis(); // // long tT = (tF - tI) / 1000; //
+		 * System.out.println("Tiempo transcurrido en segundos: " + tT);
+		 * 
+		 * System.out.println("Nombre Hilo: " + Thread.currentThread().getName()); long
+		 * tI = System.currentTimeMillis(); List<Cliente> lC = new ArrayList<>(); for
+		 * (int i = 1; i <= 100; i++) { Cliente cliente = new Cliente();
+		 * cliente.setNombre("CN" + i); cliente.setApellido("CA" + i); lC.add(cliente);
+		 * } lC.parallelStream().forEach(cliente ->
+		 * this.clienteService.guardar(cliente)); long tF = System.currentTimeMillis();
+		 * 
+		 * long tT = (tF - tI) / 1000;
+		 * System.out.println("Tiempo transcurrido en segundos: " + tT);
 		 */
 
-//		System.out.println("Nombre Hilo: " + Thread.currentThread().getName());
-//		long tI = System.currentTimeMillis();
-//		List<Cliente> lC = new ArrayList<>();
-//		for (int i = 1; i <= 100; i++) {
-//			Cliente cliente = new Cliente();
-//			cliente.setNombre("CN" + i);
-//			cliente.setApellido("CA" + i);
-//			lC.add(cliente);
-//		}
-//		lC.stream().forEach(cliente -> this.clienteService.guardar(cliente));
-//		long tF = System.currentTimeMillis();
-//
-//		long tT = (tF - tI) / 1000;
-//		System.out.println("Tiempo transcurrido en segundos: " + tT);
-
 		System.out.println("Nombre Hilo: " + Thread.currentThread().getName());
+
 		long tI = System.currentTimeMillis();
-		List<Cliente> lC = new ArrayList<>();
-		for (int i = 1; i <= 100; i++) {
+		for (int i = 1; i <= 5; i++) {
 			Cliente cliente = new Cliente();
 			cliente.setNombre("CN" + i);
 			cliente.setApellido("CA" + i);
-			lC.add(cliente);
+			this.clienteService.guardar(cliente); // demora de 1sec
 		}
-		lC.parallelStream().forEach(cliente -> this.clienteService.guardar(cliente));
 		long tF = System.currentTimeMillis();
 
-		long tT = (tF - tI) / 1000;
+		long tT = (tF - tI);
 		System.out.println("Tiempo transcurrido en segundos: " + tT);
-	}
 
+	}
 }

@@ -168,19 +168,19 @@ public class Main {
 		listaCambiada.forEach(cadena -> System.out.println(cadena));
 
 		Ciudadano ciud1 = new Ciudadano();
-		c1.setApellido("Oli");
-		c1.setNombre("Ctrian");
-		c1.setProvincia("Cotopaxi");
+		ciud1.setApellido("Oli");
+		ciud1.setNombre("Ctrian");
+		ciud1.setProvincia("Cotopaxi");
 
 		Ciudadano ciud2 = new Ciudadano();
-		c1.setApellido("Eduardo");
-		c1.setNombre("Landazuri");
-		c1.setProvincia("Chimborazo");
+		ciud2.setApellido("Eduardo");
+		ciud2.setNombre("Landazuri");
+		ciud2.setProvincia("Chimborazo");
 
 		Ciudadano ciud3 = new Ciudadano();
-		c1.setApellido("Gabriela");
-		c1.setNombre("Gallegos");
-		c1.setProvincia("Pichincha");
+		ciud3.setApellido("Gabriela");
+		ciud3.setNombre("Gallegos");
+		ciud3.setProvincia("Pichincha");
 
 		List<Ciudadano> lCiud = Arrays.asList(ciud1, ciud2, ciud3);
 		Stream<Empleado> lEmpl = lCiud.stream().map(ciudadano -> {
